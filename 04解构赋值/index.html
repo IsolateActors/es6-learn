@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		var user1 = "xiao";
+		var user2 = "ming";
+		var usre3 = "xxxx";
+		
+		// 解构赋值,可设置默认值
+		// let [teacher1,teacher2,teacher3="老七"] = ["老王","老六"];
+		
+		// 不会覆盖默认值
+		// let [teacher1,teacher2,teacher3="老七"] = ["老王","老六",undefined];
+		
+		// null 会覆盖默认值
+		let [teacher1,teacher2,teacher3="老七"] = ["老王","老六",null];
+		console.log(teacher1)
+		console.log(teacher2)
+		console.log(teacher3)
+		
+		
+		// 字符串结构
+		var str = "helloworld";
+		var [a,b,c,d,e,f] = str;
+		console.log(a)
+		console.log(c)
+		console.log(f)
+	</script>
+</html>

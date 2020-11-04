@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var a = {
+			username:"admin",
+			password:"1230"
+		}
+		
+		// 不传第二个参数
+		var b = Object.create(a)
+		console.log(a)
+		console.log(b)
+		
+		// 传入第二个参数,添加mobile属性
+		var c = Object.create(a,{
+			mobile:{
+				value:"110", //值
+				writable:false,
+				configurable:true, //是否可删除
+				enumerable:true
+			}
+		})
+		console.log(c)
+		
+		student = {
+			school:"gl",
+			learn: function(){
+				console.log("学生会学习")
+			}
+		}
+		
+		var monitor = Object.create(student,{
+			type:{
+				value: "班长",
+				writable: false,
+				configurable: true,
+				enumerable: true
+			},
+			age:{
+				value: "20",
+				writable: true,
+				configurable: true,
+				enumerable: true
+			}
+		})
+		
+		console.log(monitor)
+		
+		// 设置属性的修改
+		var monitor = Object.defineProperty(monitor,"type",{
+			value: "副班长",
+			writable: true,
+			configurable: true,
+			enumerable: true
+		})
+		console.log(monitor)
+	</script>
+</html>

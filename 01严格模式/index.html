@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		"use strict";
+		// v = 10; //报错
+		
+		function abc(){
+			console.log(this) //严格模式下undefined，非严格指向windows
+		}
+		abc();
+		
+		function Student(){
+			this.name = "小功",
+			this.age = 18;
+			this.school = "广理"
+		}
+		
+		var s1 = new Student() //漏写new报错
+		
+		var stu = {
+			username: "666",
+			username: "777" //严格模式与非严格模式都会被后面替换掉
+		}
+	</script>
+</html>

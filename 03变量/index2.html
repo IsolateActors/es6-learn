@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button>1</button>
+		<button>2</button>
+		<button>3</button>
+		<button>4</button>
+		<button>5</button>
+		<button>6</button>
+		<button>7</button>
+		<button>8</button>
+		<button>9</button>
+		<button>10</button>
+	</body>
+	<script type="text/javascript">
+		var allBtn = document.querySelectorAll("button")
+		console.log(allBtn)
+		// 输出全为10,var为全局作用域
+		for(var i =0; i < 10;i++){
+			allBtn[i].onclick = function(){
+				console.log(i)
+			}
+		}
+		
+		// 立即调用函数形成闭包，转为函数作用域
+		for(var i =0; i < 10; i++){
+			allBtn[i].onclick = (function(index){
+				return function(){
+					console.log(index)
+				}
+			})(i);
+		}
+		
+		// let
+		for(let i =0; i < 10;i++){
+			allBtn[i].onclick = function(){
+				console.log(i)
+			}
+		}
+	</script>
+</html>

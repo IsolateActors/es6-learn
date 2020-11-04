@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var arr = ["aaa","bbb","ccc","ddd"]
+		
+		// 扩展运算符复制数组
+		var arr1 = [...arr]
+		console.log(arr1)
+		console.log(arr == arr1)
+		
+		
+		function getStars(a,b,c,d){
+			console.log(a)
+			console.log(b)
+			console.log(c)
+			console.log(d)
+		}
+		
+		getStars(arr[0],arr[1],arr[2],arr[3])
+		
+		// 扩展运算符
+		getStars(...arr)
+		
+		// ----------------------------
+		// rest运算符 剩余部分
+		function fn(a,b,...args){
+			console.log(a) //1
+			console.log(b)  //2
+			console.log(args)  //[3, 4, 5, 6]
+		}
+		console.log(fn(1,2,3,4,5,6))
+		
+		// 区别
+		// 扩展运算符用在函数调用中
+		// rest运算符用在函数声明中
+	</script>
+</html>

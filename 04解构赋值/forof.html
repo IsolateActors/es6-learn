@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var stars = ["fangbingbing","chenglong", "liudehua"]
+		
+		for(var i = 0; i<stars.length; i++){
+			console.log(i)
+			console.log(stars[i])
+		}
+		
+		// 常用于遍历对象得到key,普通对象无法使用for of
+		for(let i in stars){
+			console.log(i)
+			console.log(stars[i])
+		}
+		
+		// 常用于遍历数组得到value值
+		for(let item of stars){
+			console.log(item)
+		}
+		
+		// Map
+		let map = new Map()
+		map.set("username","zon");
+		map.set("password","123456")
+		console.log(map)
+		
+		// 解构
+		for(let [key,value] of map){
+			console.log(key)
+			console.log(value)
+		}
+	</script>
+</html>

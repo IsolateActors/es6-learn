@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var user = {
+			firstname: "Z",
+			lastname: "on."
+		}
+		
+		// 添加属性
+		Object.defineProperties(user,{
+			fullname:{
+				get: function(){
+					return this.firstname + this.lastname
+				},
+				set:function(data){
+					console.log(data)
+					var arr = data.split("-") 
+					console.log(arr)
+					if(arr.length == 2){
+						this.firstname = arr[0]
+						this.lastname = arr[1]
+					}else{
+						console.error("输入名字不规范")
+					}
+				}
+			}
+		})
+	</script>
+</html>

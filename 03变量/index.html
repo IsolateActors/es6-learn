@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		{
+			var a = 1
+		}
+		console.log(a) //a为块级作用域
+		
+		var b = 456
+		{
+			var b = 123
+		}
+		console.log(b) //仍为块级作用域
+		
+		var c = "aaa"
+		{
+			//console.log(c) //报错
+			
+			let c = "ccc" //块级作用域有效
+			console.log(c)
+		}
+		console.log(c) 
+		
+		// 定义常量，块级作用域起作用
+		const HOST = "www.baidu.com"
+		const IP = "192.168.1.1"
+		HOST = "1230" //尝试修改和重复声明会报错
+		console.log(HOST)
+	</script>
+</html>
