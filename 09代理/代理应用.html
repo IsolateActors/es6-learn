@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- <div id="d1" class="redBg">
+			helloworld
+			你好
+		</div>
+		<img src="1.jpg">
+		<h1 class="blueBg">hello</h1> -->
+	</body>
+	<script type="text/javascript">
+		
+		// DOM.div({id:"d1","class": "redBg"},"helloworld","你好")
+		// DOM.ul({id:"ul","data-index":"abc"})
+		// DOM.img({src:"1.jpg"})
+		// DOM.h1({'class':"blueBg"},"hello")
+		
+		
+		let DOM = new Proxy({},{
+			get(target,attr){
+				var domObj = document.createElement(attr);
+				return function(attrs,...children){
+					for(key in attrs){
+						domObj.setAttribute(key,attrs[key])
+					}
+					
+					children.forEach(function(item,index){
+						if(typeof item == 'string'){
+							item = document.createTextNode(item)
+						}
+						domObj.appendChild(item)
+					})
+					
+					return domObj;
+				}
+			}
+		})
+		
+		var d1 = DOM.div({id:"d1","class":"redBg"},"helloworld","你好")
+		document.body.appendChild(d1)
+		
+		var ul = DOM.ul(
+					{id:"list","class":"redBg"},
+					DOM.li({"class":"li"},"列表1"),
+					DOM.li({"class":"li"},"列表2"),
+					DOM.li({"class":"li"},"列表3"),
+					DOM.li({"class":"li"},"列表4"),
+					DOM.li({"class":"li"},"列表5")
+					)
+					
+		document.body.appendChild(ul)
+	</script>
+</html>
