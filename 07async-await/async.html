@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			#d1{
+				width: 300px;
+				height: 300px;
+				background-color: skyblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="d1">
+			
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		
+		
+		var fnPromise = function(){
+			return new Promise(function(resolve, reject){
+				setTimeout(function(){
+					var d1 = document.querySelector("#d1")
+					d1.style.backgroundColor = "pink"
+					resolve("3秒改变颜色")
+				},3000)
+			})
+		}
+		
+		var fnPromise2 = function(){
+			return new Promise(function(resolve, reject){
+				setTimeout(function(){
+					var d1 = document.querySelector("#d1")
+					d1.style.backgroundColor = "green"
+					resolve("2秒改变颜色")
+				},2000)
+			})
+		}
+		
+		var fnPromise3 = function(){
+			return new Promise(function(resolve, reject){
+				reject("失败了")
+			})
+		}
+		
+		async function demo(){
+			try{
+				var result1 = await fnPromise()
+				var result2 = await fnPromise2()
+				var result3 = await fnPromise3()
+				console.log(result1)
+				console.log(result2)
+				console.log(result3)
+			}catch(e){
+				//TODO handle the exception
+				console.log(e)
+			}
+			
+		}
+		demo()
+		console.log("112346")
+		
+		// var p1 = fnPromise();
+		// p1.then(function(res){
+		// 	console.log(res)
+		// })
+	</script>
+</html>

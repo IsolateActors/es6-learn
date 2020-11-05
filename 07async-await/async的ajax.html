@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		
+		// 封装
+		function getAjax(url){
+			return new Promise(function(resolve,reject){
+				// 1创建xhr
+				var xhr = new XMLHttpRequest();
+				
+				// 2设置路劲
+				var httlUrl = url;
+				xhr.open("GET",httlUrl);
+				
+				// 3.监听
+				xhr.onreadystatechange = function(){
+					if(xhr.status == 200 && xhr.readyState ==4){
+						// 处理获得数据
+						result = JSON.parse(xhr.response)
+						resolve(result);
+					}else if(xhr.readyState == 4&&xhr.status!=200){
+						// 处理失败的结果
+						reject(xhr);
+					}
+				}
+				
+				// 4发送
+				xhr.send();
+			})
+		}
+		
+		async function test(){
+			var httpurl = "http://baidu.com"
+			var res = await getAjax(httpurl)
+			console.log(res)
+		}
+		test()
+	</script>
+</html>

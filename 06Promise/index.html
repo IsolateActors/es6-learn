@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		// 解决回调地狱问题
+		
+		var p1 = new Promise(function(resolve,reject){
+			// resolve -->成功，reject --》失败
+			if(true){
+				resolve("数据请求完成")
+			}else{
+				reject("数据请求失败")
+			}
+		})
+		console.log(p1)
+		
+		p1.then(function(res){
+			console.log("回调成功:"+ res)
+		},
+		function(err){
+			console.log(err)
+		})
+		
+		p1.catch(function(err){
+			console.log("catch:",err)
+		})
+		
+		p1.finally(function(){
+			console.log("finally")
+		})
+	</script>
+</html>

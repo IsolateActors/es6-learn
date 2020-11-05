@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		// 传统
+		num = 0;
+		get(url1,function(){
+			num +1
+			if(num ==3){
+				// 统一处理
+			}
+		})
+		get(url2,function(){
+			num +1
+			if(num ==3){
+				// 统一处理
+			}
+		})
+		get(url3,function(){
+			num +1
+			if(num ==3){
+				// 统一处理
+			}
+		})
+		
+		// promise.all()
+		num = 0;
+		var pList = []
+		for(let i = 0; i<8;i++){
+			let p = new Promise(function(resolve,reject){
+				let img = new Image();
+				img.src = 'img/'+ (i+1)+".jpg";
+				img.onload = function(){
+					resolve(img)
+				}
+			})
+			pList.push(p)
+		}
+		
+		let pAll = Promise.all(pList)
+		pAll.then(function(res){
+			console.log("所有数据加载完成")
+			console.log(res)
+		})
+		
+		
+		// 同时请求多个，只要有一个返回结果就立即处理，其他停止
+		var p1 = Promise.resolve("成功1")
+		var p2 = Promise.resolve("成功2")
+		var p3 = Promise.resolve("成功3")
+		var p4 = Promise.resolve("成功4")
+		
+		var arr = [p1,p2,p3,p4]
+		var result = Promise.rece(arr)
+		result.then(function(res){
+			console.log(res)
+		})
+	</script>
+</html>
