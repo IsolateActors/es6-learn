@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		class zPromise extends Promise{
+			success(resovle,reject){
+				this.then(resovle,reject)
+			}
+			fail(reject){
+				this.catch(reject)
+			}
+		}
+		
+		var p1 = new zPromise(function(resovle,reject){
+			if(true){
+				resovle("成功")
+			}else{
+				reject("失败")
+			}
+		})
+		
+		p1.success(function(res){
+			console.log(res)
+		})
+		
+		p1.fail(function(res){
+			console.log(res)
+		})
+	</script>
+</html>

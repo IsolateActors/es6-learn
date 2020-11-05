@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		function createIterator(items){
+			var i = 0;
+			return{
+				next(){
+					var done = (i>items.length);
+					var value = !done?items[i++] : undefined;
+					
+					return{
+						done,
+						value
+					}
+				}
+			}
+		}
+		
+		const a = createIterator([1,2,3,5,9])
+		console.log(a.next())
+		console.log(a.next())
+		
+		// for..of..进行迭代
+		for(let s of a){
+			console.log(s)
+		}
+	</script>
+</html>

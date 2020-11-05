@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		// 可迭代
+		// 数组
+		var a = ["小米", "小红", "小黑", "小绿", "小米"]
+		console.log(a)
+		console.log(A = a.entries()) //entries()内建迭代器返回key-value
+		for(let value of A){
+			console.log(value)
+		}
+		
+		for(let value of a.values()){ //values()内建迭代器返回value
+			console.log(value)
+		}
+		
+		console.log("------------------------")
+		// Set
+		var s = new Set(a)
+		console.log(s)
+		
+		for(let value of s){
+			console.log(value)
+		}
+		
+		console.log("------------------------")
+		// Map
+		var user = new Map();
+		user.set("name", "小明")
+		user.set("age", 18)
+		user.set("sex", "男")
+		console.log(user)
+		
+		for(let [key,value] of user){
+			console.log(key+"--"+value)
+		}
+		
+		console.log("------------------------")
+		// 字符串
+		var b = "helloworld";
+		console.log(b)
+		for(let value of b){
+			console.log(value)
+		}
+		
+		console.log("------------------------")
+		// 对象本不可迭代,[Symbol.iterator]可帮助我们将任意对象变为可迭代对象
+		var student = {
+			"name": "小黑",
+			age:19,
+			sex:"女",
+			*[Symbol.iterator](){ //创建生成器
+				for (let key in this) {
+					yield [key, this[key]]
+				}
+			}
+		}
+		
+		console.log(student)
+		for(let value of student){
+			console.log(value) //可通过Symbol.iterator创建迭代器
+		}
+	</script>
+</html>

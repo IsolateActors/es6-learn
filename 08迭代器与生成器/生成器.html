@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		// 生成器创建迭代对象，函数前面加*，yeild
+		function *easy(){
+			yield 1;
+			yield 2;
+			yield 3;
+		}
+		
+		let easyIterator = easy();
+		console.log(easyIterator)
+		
+		for(let i of easyIterator){
+			console.log(i)
+		}
+		
+		function *difficult(count=10){
+			var num = 1;
+			var pre1 = 0;
+			var pre2 = 0;
+			if(num < count){
+				if(num == 1){
+					pre1 = 0;
+					pre2 = 1;
+					num++;
+					yield 1;
+				}
+			}
+			while(true){
+				num++;
+				let result = pre1+ pre2;
+				pre1 = pre2;
+				pre2 = result;
+				yield result;
+				if(num> count){
+					break;
+				}
+			}
+			
+		}
+		
+		var diffIterator = difficult(5)
+		console.log(diffIterator)
+		
+		for(let i of diffIterator){
+			console.log(i)
+		}
+	</script>
+</html>
