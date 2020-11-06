@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		var fn = function(resolve,reject){
+			setTimeout(function(){
+				if(true){
+					resolve("原生promise成功")
+				}else{
+					reject("原生promise失败")
+				}
+			},1000)
+		}
+		
+		var p1 = new Promise(fn)
+		
+		p1.then(function(res){
+			console.log(res)
+		})
+		
+		p1.then(function(res){
+			console.log(res)
+		})
+		
+		p1.catch(function(err){
+			console.log(err)
+		})
+		
+		
+		setTimeout(()=>{
+			console.log("原生sss")
+			
+			// 原生延迟添加队列回调成功
+			p1.then(function(res){
+				console.log(res)
+			})
+			
+			p1.catch(function(err){
+				console.log(err)
+			})
+		},2000)
+		
+		
+		// ----------------------------------
+		// es6
+		class zPromise{
+			constructor(fn) {
+			    this.successList = [];
+				this.failList = [];
+				// pending fullfilled, rejected
+				this.state = "pending";
+				fn(this.resolveFn.bind(this), this.failFn.bind(this))
+			}
+			
+			then(successFn,failFn){
+				if(typeof successFn == "function"){
+					this.successList.push(successFn);
+				}
+				if(typeof failFn == "function"){
+					this.failList.push(successFn);
+				}
+			}
+			
+			catch(failFn){
+				if(typeof failFn == "function"){
+					this.failList.push(failFn);
+				}
+			}
+			
+			resolveFn(res){
+				this.state = "fullfilled"
+				this.successList.forEach(function(item,index){
+					// 成功事件循环调用
+					item(res);
+				})
+			}
+			
+			failFn(err){
+				this.state = "rejected"
+				this.failList.forEach(function(item,index){
+					item(err);
+				})
+			}
+		}
+		
+		
+		var fn2 = function(resolve,reject){
+			setTimeout(function(){
+				if(true){
+					resolve("zPromise成功")
+				}else{
+					reject("zPromise失败")
+				}
+			},1000)
+		}
+		
+		var p2 = new zPromise(fn2)
+		
+		p2.then(function(res){
+			console.log(res)
+		})
+		
+		
+		setTimeout(()=>{
+			console.log("sss")
+			
+			// 延迟添加队列回调失败（猜想：需要实现监听）
+			p2.then(function(res){
+				console.log(res)
+			})
+			
+			p2.catch(function(err){
+				console.log(err)
+			})
+		},2000)
+		
+	</script>
+</html>
